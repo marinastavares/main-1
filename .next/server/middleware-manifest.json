@@ -1,49 +1,6 @@
 {
   "sortedMiddleware": [],
   "middleware": {},
-  "functions": {
-    "/api/hello": {
-      "env": [],
-      "files": [
-        "server/edge-runtime-webpack.js",
-        "server/pages/api/hello.js"
-      ],
-      "name": "pages/api/hello",
-      "page": "/api/hello",
-      "matchers": [
-        {
-          "regexp": "^/api/hello$",
-          "originalSource": "/api/hello"
-        }
-      ],
-      "wasm": [],
-      "assets": []
-    },
-    "/": {
-      "env": [
-        "NEXT_OTEL_VERBOSE",
-        "NEXT_PRIVATE_MINIMAL_MODE",
-        "__NEXT_TEST_MAX_ISR_CACHE",
-        "NEXT_PRIVATE_DEBUG_CACHE"
-      ],
-      "files": [
-        "server/middleware-build-manifest.js",
-        "server/middleware-react-loadable-manifest.js",
-        "server/next-font-manifest.js",
-        "server/edge-runtime-webpack.js",
-        "server/pages/index.js"
-      ],
-      "name": "pages/index",
-      "page": "/",
-      "matchers": [
-        {
-          "regexp": "^/$",
-          "originalSource": "/"
-        }
-      ],
-      "wasm": [],
-      "assets": []
-    }
-  },
+  "functions": {},
   "version": 2
 }
