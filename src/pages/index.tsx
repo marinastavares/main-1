@@ -1,6 +1,5 @@
-import { Inter } from "next/font/google";
-import Form from "@/components/Form";
 import { Box } from "@mui/material";
+import Table from "@/components/Table";
 
 export default function Home() {
   return (
@@ -8,10 +7,11 @@ export default function Home() {
       display="flex"
       my="150px"
       mx="auto"
+      width="80%"
       alignItems="center"
       justifyContent="center"
     >
-      <Form />
+      <Table />
     </Box>
   );
 }

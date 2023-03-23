@@ -4,7 +4,7 @@ import { getInitColorSchemeScript } from "@mui/material/styles";
 export default class MyDocument extends Document {
   render() {
     return (
-      <html>
+      <Html>
         <Head>
           <title>Ursa Minor</title>
           <meta name="description" content="Hackaday 2023" />
@@ -21,7 +21,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

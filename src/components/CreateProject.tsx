@@ -2,11 +2,19 @@ import TextField from "@mui/material/TextField";
 import { Box, Button, Card, Typography } from "@mui/material";
 import React, { useState } from "react";
 
-const CreateProject = ({ onNextClick }: { onNextClick: () => void }) => {
+const CreateProject = ({
+  onNextClick,
+}: {
+  onNextClick: (value: string) => void;
+}) => {
   const [name, setName] = useState("");
 
   const onChange = (event: any) => {
     setName(event.target.value);
+  };
+
+  const onClick = () => {
+    onNextClick(name);
   };
 
   return (
@@ -19,7 +27,7 @@ const CreateProject = ({ onNextClick }: { onNextClick: () => void }) => {
         onChange={onChange}
       />
       <Button
-        onClick={onNextClick}
+        onClick={onClick}
         variant="contained"
         size="small"
         color="primary"

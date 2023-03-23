@@ -81,11 +81,6 @@ export const getThresholdForScore = (score: number) =>
       score <= wafScoreThresholds?.[threshold].leq
   );
 
-// case BAR_WAF_CHART_BUCKETS.CLEAN: #104122
-// case BAR_WAF_CHART_BUCKETS.LIKELY_CLEAN: #2db35e
-// case BAR_WAF_CHART_BUCKETS.ATTACK: #780a02
-// case BAR_WAF_CHART_BUCKETS.LIKELY_ATTACK: #fc574a
-
 const example = {
   "waf.score": 10,
   "waf.xss.score": 25,
@@ -93,7 +88,7 @@ const example = {
   "waf.rce.score": 99,
 };
 
-export default function Home() {
+export default function Score() {
   const renderData = useMemo(() => {
     const currentValues = Object.values(example).map((value) =>
       getThresholdForScore(value)
@@ -131,14 +126,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Box
-      display="flex"
-      my="150px"
-      mx="80px"
-      width="80%"
-      alignItems="center"
-      justifyContent="center"
-    >
+    <Box display="flex" width="80%" alignItems="center" justifyContent="center">
       <Bar options={options} data={renderData} />
     </Box>
   );

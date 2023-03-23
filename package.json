@@ -23,6 +23,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fontsource/roboto": "^4.5.8",
+    "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.14",
     "@types/node": "18.15.5",
     "@types/react": "18.0.28",
@@ -33,11 +34,14 @@
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "faker": "^6.6.6",
+    "lodash.debounce": "^4.0.8",
     "next": "13.2.4",
+    "rc-json-editor": "^2.0.34",
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-display-name": "^0.2.5",
     "react-dom": "18.2.0",
+    "react-json-editor-ajrm": "^2.5.14",
     "react-query": "^3.39.3",
     "typescript": "5.0.2"
   }
