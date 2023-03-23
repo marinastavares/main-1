@@ -8,12 +8,16 @@ import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import { STEPS } from "./Form";
 
-const WizardForm = ({ step, setStep, children }) => {
-  const [activeStep, setActiveStep] = React.useState(0);
-
+const WizardForm = ({
+  step,
+  children,
+}: {
+  step: number;
+  children: React.ReactNode;
+}) => {
   return (
     <Box border="1px solid grey" p="24px" width="80%">
-      <Stepper activeStep={activeStep}>
+      <Stepper activeStep={step}>
         {STEPS.map((label) => {
           return (
             <Step key={label}>

@@ -2,10 +2,10 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
 
-const UploadModel = ({ onNextClick }) => {
+const UploadModel = ({ onNextClick }: { onNextClick: () => void }) => {
   const [name, setName] = useState("");
 
-  const onChange = (event) => {
+  const onChange = (event: any) => {
     setName(event.target.value);
   };
 

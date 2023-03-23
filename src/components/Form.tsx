@@ -22,11 +22,7 @@ const Form = () => {
     }
     return <CreateProject onNextClick={handleData} />;
   }, [step]);
-  return (
-    <WizardForm step={step} setStep={setStep}>
-      {renderContent}
-    </WizardForm>
-  );
+  return <WizardForm step={step}>{renderContent}</WizardForm>;
 };
 
 export default Form;

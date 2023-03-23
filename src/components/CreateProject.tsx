@@ -2,10 +2,10 @@ import TextField from "@mui/material/TextField";
 import { Box, Button, Card, Typography } from "@mui/material";
 import React, { useState } from "react";
 
-const CreateProject = ({ onNextClick }) => {
+const CreateProject = ({ onNextClick }: { onNextClick: () => void }) => {
   const [name, setName] = useState("");
 
-  const onChange = (event) => {
+  const onChange = (event: any) => {
     setName(event.target.value);
   };
 

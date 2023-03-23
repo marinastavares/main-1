@@ -2,7 +2,7 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 import { Box, Button } from "@mui/material";
 import React from "react";
 
-const DeployModel = ({ onNextClick }) => {
+const DeployModel = ({ onNextClick }: { onNextClick: () => void }) => {
   return (
     <Box display="flex" justifyContent="center">
       <Button

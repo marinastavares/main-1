@@ -75,8 +75,10 @@ export const wafScoreThresholds = {
 export const getThresholdForScore = (score: number) =>
   Object.keys(wafScoreThresholds).find(
     (threshold) =>
-      score >= wafScoreThresholds[threshold].geq &&
-      score <= wafScoreThresholds[threshold].leq
+      // @ts-ignore
+      score >= wafScoreThresholds?.[threshold].geq &&
+      // @ts-ignore
+      score <= wafScoreThresholds?.[threshold].leq
   );
 
 // case BAR_WAF_CHART_BUCKETS.CLEAN: #104122
@@ -92,13 +94,12 @@ const example = {
 };
 
 export default function Home() {
-  console.log("\n🚀 -> example:", getThresholdForScore(example["waf.score"]));
   const renderData = useMemo(() => {
     const currentValues = Object.values(example).map((value) =>
       getThresholdForScore(value)
     );
 
-    const getDataType = (type) =>
+    const getDataType = (type: string) =>
       Object.values(example).map((value) =>
         getThresholdForScore(value) === type ? value : 0
       );
