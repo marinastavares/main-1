@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
@@ -8,7 +8,8 @@ import Typography from "@mui/material/Typography";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Button, TextareaAutosize } from "@mui/material";
-import Score from "./score";
+import Score from "./Score";
+import { StateContext } from "@/utils/StateContext";
 
 const Row = (props: { row: { name: string; id: string } }) => {
   const { row } = props;
@@ -17,11 +18,22 @@ const Row = (props: { row: { name: string; id: string } }) => {
   const [value, setValue] = React.useState("");
   const response = "";
 
+  const {
+    isLoading,
+    model: { data },
+    getInference,
+    sendModelData,
+  } = useContext(StateContext);
+
   const onChange = useCallback((event: any) => {
     setValue(event.target.value);
   }, []);
-  const onChangeInference = useCallback((event: any) => {
+  const onChangeInference = useCallback(async (event: any) => {
+    await getInference?.(row.id);
     setOpenInference((prevState) => !prevState);
+  }, []);
+  const onSendDataClick = useCallback(async (event: any) => {
+    await sendModelData?.(row.id, value);
   }, []);
 
   return (
@@ -54,7 +66,9 @@ const Row = (props: { row: { name: string; id: string } }) => {
                   onChange={onChange}
                 />
 
-                <Button>SEND</Button>
+                <Button onClick={onSendDataClick} disabled={isLoading}>
+                  SEND
+                </Button>
               </Box>
               {response && (
                 <TextareaAutosize
@@ -63,8 +77,12 @@ const Row = (props: { row: { name: string; id: string } }) => {
                   onChange={onChange}
                 />
               )}
-              <Button onClick={onChangeInference}>Inference</Button>
-              {inference && <Score />}
+              <Button onClick={onChangeInference}>
+                {isLoading ? "..." : "Get score"}
+              </Button>
+              {inference && !isLoading && Object.keys(data)?.length && (
+                <Score data={data} />
+              )}
             </Box>
           </Collapse>
         </TableCell>

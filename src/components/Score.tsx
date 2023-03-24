@@ -1,4 +1,4 @@
-import Form from "@/components/Form";
+import { ModelProps } from "@/utils/StateContext";
 import { Box } from "@mui/material";
 import {
   Chart as ChartJS,
@@ -88,14 +88,10 @@ const example = {
   "waf.rce.score": 99,
 };
 
-export default function Score() {
+const Score = ({ data = example }: { data: ModelProps["data"] }) => {
   const renderData = useMemo(() => {
-    const currentValues = Object.values(example).map((value) =>
-      getThresholdForScore(value)
-    );
-
     const getDataType = (type: string) =>
-      Object.values(example).map((value) =>
+      Object.values(data).map((value) =>
         getThresholdForScore(value) === type ? value : 0
       );
     return {
@@ -130,4 +126,6 @@ export default function Score() {
       <Bar options={options} data={renderData} />
     </Box>
   );
-}
+};
+
+export default Score;

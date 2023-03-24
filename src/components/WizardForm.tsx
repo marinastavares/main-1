@@ -1,11 +1,10 @@
-import { Card, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import React from "react";
 
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import Button from "@mui/material/Button";
 import { STEPS } from "./Form";
 
 const WizardForm = ({

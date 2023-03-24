@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import { StateProvider } from "@/utils/StateContext";
 import { Box, Button, ThemeProvider, createTheme } from "@mui/material";
 import type { AppProps } from "next/app";
 import Link from "next/link";
@@ -19,19 +20,21 @@ export default function App({ Component, pageProps }: AppProps) {
         },
       })}
     >
-      <Box
-        width="100%"
-        display="flex"
-        flexDirection="column"
-        alignItems="flex-start"
-      >
-        {router.asPath !== "/" && (
-          <Button size="large" LinkComponent={Link} href="/">
-            Back
-          </Button>
-        )}
-        <Component {...pageProps} />
-      </Box>
+      <StateProvider>
+        <Box
+          width="100%"
+          display="flex"
+          flexDirection="column"
+          alignItems="flex-start"
+        >
+          {router.asPath !== "/" && (
+            <Button size="large" LinkComponent={Link} href="/">
+              Back
+            </Button>
+          )}
+          <Component {...pageProps} />
+        </Box>
+      </StateProvider>
     </ThemeProvider>
   );
 }

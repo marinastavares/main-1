@@ -1,12 +1,14 @@
+import { StateContext } from "@/utils/StateContext";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import { Box, Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 const UploadModel = ({
   onNextClick,
 }: {
   onNextClick: (value: string) => void;
 }) => {
+  const { isLoading } = useContext(StateContext);
   const [name, setName] = useState("");
 
   const onChange = (event: any) => {
@@ -27,7 +29,7 @@ const UploadModel = ({
           size="small"
           color="primary"
         >
-          Send
+          {isLoading ? "..." : "Send"}
         </Button>
       </Box>
     </Box>

@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import CreateProject from "./CreateProject";
 import WizardForm from "./WizardForm";
 import UploadModel from "./UploadModel";
 import DeployModel from "./DeployModel";
+import { StateContext } from "@/utils/StateContext";
 
 export const API = "https://ursa-minor-backend.igneus.cfdata.org";
 export const STEPS = ["Create Project", "Upload Model", "Deploy Model"];
@@ -27,22 +28,22 @@ async function postData(url = "", data = {}) {
 }
 
 const Form = () => {
+  const {
+    handleCreateModel,
+    handleDeployProject,
+    handleUploadModel,
+    model: { id },
+  } = useContext(StateContext);
   const [step, setStep] = useState(0);
 
   const handleData = async (value?: string) => {
     try {
       if (step === 0) {
-        await postData("models", {
-          name: value,
-        });
+        value && (await handleCreateModel?.(value));
       } else if (step === 1) {
-        await postData("create", {
-          name: value,
-        });
+        value && (await handleUploadModel?.(value));
       } else if (step === 2) {
-        await postData("upload", {
-          name: value,
-        });
+        await handleDeployProject?.();
       }
     } catch (e) {
       console.error("Something went wrong");

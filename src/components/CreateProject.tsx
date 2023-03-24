@@ -1,12 +1,14 @@
 import TextField from "@mui/material/TextField";
 import { Box, Button, Card, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { StateContext } from "@/utils/StateContext";
 
 const CreateProject = ({
   onNextClick,
 }: {
   onNextClick: (value: string) => void;
 }) => {
+  const { isLoading } = useContext(StateContext);
   const [name, setName] = useState("");
 
   const onChange = (event: any) => {
@@ -32,7 +34,7 @@ const CreateProject = ({
         size="small"
         color="primary"
       >
-        Create
+        {isLoading ? "..." : "Create"}
       </Button>
     </Box>
   );

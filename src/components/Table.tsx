@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,14 +9,15 @@ import Paper from "@mui/material/Paper";
 import Row from "./TableRow";
 import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
+import { StateContext } from "@/utils/StateContext";
 
 const TableContent = () => {
-  const rows = [
-    {
-      name: "Test",
-      id: 1,
-    },
-  ];
+  const { isLoading, models: rows, getModels } = useContext(StateContext);
+
+  useEffect(() => {
+    getModels?.();
+  }, []);
+
   return (
     <Box minWidth="600px" width="100%" display="flex" flexDirection="column">
       <Box display="flex" justifyContent="space-between">
@@ -27,24 +28,28 @@ const TableContent = () => {
           Create model
         </Button>
       </Box>
-      <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="left" width="20px" />
-              <TableCell align="left">Model name</TableCell>
-              <TableCell />
-              <TableCell />
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              // @ts-ignore
-              <Row key={row.name} row={row} />
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <TableContainer component={Paper}>
+          <Table aria-label="collapsible table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="left" width="20px" />
+                <TableCell align="left">Model name</TableCell>
+                <TableCell />
+                <TableCell />
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                // @ts-ignore
+                <Row key={row.name} row={row} />
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
     </Box>
   );
 };

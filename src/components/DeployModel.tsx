@@ -1,8 +1,10 @@
-import TextareaAutosize from "@mui/base/TextareaAutosize";
+import { StateContext } from "@/utils/StateContext";
 import { Box, Button } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 
 const DeployModel = ({ onNextClick }: { onNextClick: () => void }) => {
+  const { isLoading } = useContext(StateContext);
+
   return (
     <Box display="flex" justifyContent="center">
       <Button
@@ -11,7 +13,7 @@ const DeployModel = ({ onNextClick }: { onNextClick: () => void }) => {
         size="large"
         color="primary"
       >
-        💫 DEPLOY A SHOOTING STAR 💫
+        {isLoading ? "..." : "💫 DEPLOY A SHOOTING STAR 💫"}
       </Button>
     </Box>
   );
